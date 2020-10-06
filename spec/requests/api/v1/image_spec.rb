@@ -8,4 +8,9 @@ describe "Image of search API" do
     body = JSON.parse(response.body)
     expect(body["data"]["attributes"]["location_image"]).to be_a(String)
   end 
+
+  it "returns an error with bad request" do 
+
+    post 
+  end
 end
