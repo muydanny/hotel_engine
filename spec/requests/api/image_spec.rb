@@ -6,6 +6,6 @@ describe "Image of search API" do
     get "/api/v1/image?location=denver,co"
     expect(response).to be_successful  
     body = JSON.parse(response.body)
-    expect(body["data"]["attributes"]["location_background_image"]).to be_a(String)
+    expect(body["data"]["attributes"]["location_image"]).to be_a(String)
   end 
 end

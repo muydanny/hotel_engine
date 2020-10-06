@@ -4,8 +4,8 @@ class Image
               :location_image
 
   def initialize(image)
-    require 'pry'; binding.pry
+    
     @id = nil
-    @location_image = image
+    @location_image = image[:results][0][:urls][:full]
   end
 end

@@ -2,7 +2,6 @@ class Api::V1::ImageController < ApplicationController
 
   def show
     image = UnsplashService.new.get_image(location_params[:location])
-   
     render json: UnsplashSerializer.new(Image.new(image)).serialized_json
   end
 
