@@ -1,12 +1,11 @@
 class Api::V1::ImageController < ApplicationController
 
   def show
-    search = Search.find_by(query_params: organized_params)
+    search = Search.find_by(query_params: query_params)
     unless search 
-      search = Search.create(query_params: organized_params)
+      search = Search.create(query_params: query_params)
       UnsplashService.new.get_images(search)
     end
-
     render json: UnsplashSerializer.new(search.results).serialized_json
   end
 
@@ -17,15 +16,7 @@ class Api::V1::ImageController < ApplicationController
   end
 
   def query_params
-    search_params[:search].split(',')
-  end
-
-  def organized_params
-    query_params.reduce({}) do |collector, term|
-      split = term.split('=')
-      collector[split.first] = split.last
-      collector
-    end
+    search_params[:search]
   end
     
 end
