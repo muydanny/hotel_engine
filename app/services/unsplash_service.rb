@@ -2,9 +2,9 @@ class UnsplashService
 
   def get_images(search)
     response = conn.get("/search/photos") do |req|
-      # USE THE "LOCATION" param  (which should be just params or query_params) and dynamically create the query string 
-      req.params["query"] = "#{search} fall leaves"
+      req.params["query"] = search.query_params
     end
+    require 'pry'; binding.pry
     json = JSON.parse(response.body, symbolize_names: true)
 
     json[:results].each do |result|
