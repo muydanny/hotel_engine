@@ -1,10 +1,16 @@
 class UnsplashService
 
-  def get_image(location)
+  def get_images(search)
     response = conn.get("/search/photos") do |req|
-      req.params["query"] = "#{location} fall leaves"
+      # USE THE "LOCATION" param  (which should be just params or query_params) and dynamically create the query string 
+      req.params["query"] = "#{search} fall leaves"
     end
     json = JSON.parse(response.body, symbolize_names: true)
+
+    json[:results].each do |result|
+      image_url = result[:urls][:raw]
+      Result.create(image_url: image_url, search_id: search.id)
+    end
   end
 
   private
