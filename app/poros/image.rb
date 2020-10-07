@@ -1,11 +1,10 @@
-class Image
+# class Image
+#   attr_reader :id,
+#               :location_image
 
-  attr_reader :id,
-              :location_image
-
-  def initialize(image)
-    
-    @id = nil
-    @location_image = image[:results][0][:urls][:full]
-  end
-end
+#   def initialize(image)
+#     require 'pry'; binding.pry
+#     @id = nil
+#     @location_image = image[:results].take(100)
+#   end
+# end
