@@ -3,7 +3,7 @@ require 'rails_helper'
 describe "Image of search API" do
   it "can get an image for a city" do
 
-    get "/api/v1/image?search=location=denver co,season=winter"
+    get "/api/v1/image?search=denver co winter"
     expect(response).to be_successful  
     body = JSON.parse(response.body)
     
@@ -11,8 +11,15 @@ describe "Image of search API" do
     expect(body["data"].count).to eq(10)
   end 
 
-  # it "returns an error with bad request" do 
+  it "can access db instead of api if search terms exist in the database" do 
+    # create search record wuth qp you pass thru 
+    search = create(:search, :with_results)
+    get "/api/v1/image?search=summer beach"
+    expect(response).to be_successful
+    body = JSON.parse(response.body)
 
-  #   post 
-  # end
+    expect(body["data"].count).to eq(search.results.count)
+  end
+
+  
 end
