@@ -6,7 +6,13 @@ class Api::V1::ImageController < ApplicationController
       search = Search.create(query_params: query_params)
       UnsplashService.new.get_images(search)
     end
-    render json: UnsplashSerializer.new(search.results).serialized_json
+
+    if search.results.length != 0
+      render json: UnsplashSerializer.new(search.results).serialized_json, code: 200
+    else
+      payload = { error: "No Content"}
+      render :json => payload, :status => 204
+    end
   end
 
   private
