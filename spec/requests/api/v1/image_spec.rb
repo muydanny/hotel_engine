@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Image of search API" do
+describe "Image of search API", :vcr do
   it "can get an image for a city" do
     get "/api/v1/image?search=denver co winter"
     expect(response).to be_successful  
@@ -10,7 +10,7 @@ describe "Image of search API" do
     expect(body["data"].count).to eq(10)
   end 
 
-  it "can access db instead of api if search terms exist in the database" do 
+  it "can access db instead of api if search terms exist in the database", :vcr do 
     search = create(:search, :with_results)
     get "/api/v1/image?search=summer beach"
     expect(response).to be_successful
@@ -19,7 +19,7 @@ describe "Image of search API" do
     expect(body["data"].count).to eq(search.results.count)
   end
 
-  it "gives a 204 if the search parameter is missing" do 
+  it "gives a 204 if the search parameter is missing", :vcr do 
     get "/api/v1/image?denver co winter"
     body = JSON.parse(response.body)
 
@@ -27,7 +27,7 @@ describe "Image of search API" do
     expect(body["info"]).to eq "No Results"
   end
 
-  it "provides the ability to sort the responses" do 
+  it "provides the ability to sort the responses", :vcr do 
     get "/api/v1/image?search=summer beach&sort=updated&dir=asc"
     expect(response).to be_successful
     
@@ -40,7 +40,7 @@ describe "Image of search API" do
     expect(last_date > first_date).to be true
   end
 
-  it "provides the ability to filter the responses" do 
+  it "provides the ability to filter the responses", :vcr do 
     color_code = "#dabed8"
     search = create(:search, :with_results)
     search.results.update_all(color_code: "#FFFFFF")
