@@ -3,9 +3,11 @@
 The purpose of this assignment was to create a client that requests and consumes and external API. The API I chose was the Unsplash API to recieve photos. I ran into some challenges trying to populate my database with the search results. The goal was to populate the database with key terms with each request so if a later request fit a similar criteria the results were gathered from the database and not the API. However it being tricky I believe I was successful in accomplishing this initial challenge. 
 
 Ruby Version
+
 '''
 2.5.3
 '''
+
 Rails Version
 
 '''
