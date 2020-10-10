@@ -12,6 +12,7 @@ gem 'puma', '~> 4.1'
 gem 'rswag'
 gem 'faraday'
 gem 'figaro'
+gem 'fast_jsonapi', '~> 1.1', '>= 1.1.1'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
@@ -35,10 +36,14 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'pry'
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :test do
   gem 'shoulda-matchers', '~> 4.0'
+  gem 'webmock'
+  gem 'vcr'
 end
 
 group :development do

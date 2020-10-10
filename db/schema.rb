@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_02_210354) do
+ActiveRecord::Schema.define(version: 2020_10_06_023113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "results", force: :cascade do |t|
+    t.string "image_url"
+    t.string "color_code"
+    t.datetime "updated"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "search_id", null: false
+    t.index ["search_id"], name: "index_results_on_search_id"
+  end
 
   create_table "searches", force: :cascade do |t|
     t.text "query_params"
@@ -23,4 +33,5 @@ ActiveRecord::Schema.define(version: 2020_10_02_210354) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "results", "searches"
 end
