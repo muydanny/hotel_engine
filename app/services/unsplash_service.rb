@@ -4,12 +4,15 @@ class UnsplashService
     response = conn.get("/search/photos") do |req|
       req.params["query"] = search.query_params
     end
-    require 'pry'; binding.pry
+    
     json = JSON.parse(response.body, symbolize_names: true)
 
     json[:results].each do |result|
       image_url = result[:urls][:raw]
-      Result.create(image_url: image_url, search_id: search.id)
+      color_code = result[:color]
+      updated = result[:updated_at]
+  
+      Result.create(image_url: image_url, color_code: color_code, updated: updated, search_id: search.id)
     end
   end
 

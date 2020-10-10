@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(version: 2020_10_06_023113) do
 
   create_table "results", force: :cascade do |t|
     t.string "image_url"
+    t.string "color_code"
+    t.datetime "updated"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "search_id", null: false
