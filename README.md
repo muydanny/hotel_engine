@@ -54,7 +54,7 @@ Now you can run queries against localhost:3000!
 To query images, include a `search` query parameter and include all the search terms you would like to get images for.
 
 ```
-https://api.unsplash.com/search/photos/api/v1/image?search=denver winter
+https://hotel-engine-app.herokuapp.com/api/v1/image?search=denver winter
 ```
 
 ## Sorting Images
@@ -62,7 +62,7 @@ https://api.unsplash.com/search/photos/api/v1/image?search=denver winter
 For sorting images, include a `sort` and `dir` query parameter. The `sort` query parameter currently only supports sorting by `updated`, which is a timestamp for when the image was updated in the Unsplash API. For `dir`, the only supported values are `desc` and `asc`. 
 
 ```
-https://api.unsplash.com/search/photos/api/v1/image?search=summer beach&sort=updated&dir=asc
+https://hotel-engine-app.herokuapp.com/api/v1/image?search=summer beach&sort=updated&dir=asc
 ```
 
 ## Filtering Images
@@ -70,7 +70,7 @@ https://api.unsplash.com/search/photos/api/v1/image?search=summer beach&sort=upd
 If you'd like to filter images, add the `filter` query parameter. Currently only `color_code` is supported. The `color_code` should be a hex value. Don't forget to encode the initial pound sign! 
 
 ```
-https://api.unsplash.com/search/photos/api/v1/image?search=summer beach&filter=%23dabed8
+https://hotel-engine-app.herokuapp.com/api/v1/image?search=summer beach&filter=%23dabed8
 ```
 
 ## Sample Response
