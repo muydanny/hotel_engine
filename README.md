@@ -1,6 +1,6 @@
 # Hotel Engine Take Home Assignment
 
-The purpose of this assignment was to create a client that requests and consumes and external API. The API I chose was the Unsplash API to recieve photos. I ran into some challenges trying to populate my database with the search results. The goal was to populate the database with key terms with each request so if a later request fit a similar criteria the results were gathered from the database and not the API. However it being tricky I believe I was successful in accomplishing this initial challenge. 
+The purpose of this assignment was to create a client that requests and consumes and external API. The API I chose was the Unsplash API to recieve photos.
 
 Ruby Version
 
@@ -31,32 +31,35 @@ To view this application in development mode and run tests, follow these steps:
 Clone down this repo and change into the newly created directory:
 
 ```
-https://github.com/muydanny/hotel_engine
-
-cd he_app
+$ git clone https://github.com/muydanny/hotel_engine
+$ cd hotel_engine
 ```
-Once inside the code base, in order to run tests, type the following command in the terminal:
+Once inside the code base type the following command in the terminal:
 
 ```
-rake db:{create,migrate}
-bundle install
+$ bundle install
+$ rake db:{create,migrate}
 ```
 
-If you would like to view the application in Development mode, run the following command:
+If you would like to query the application locally, start the rails server:
 
 ```
 rails s
 ```
 
-Check http://localhost:3000/ and 
+Now you can run queries against localhost:3000!
 
 ## Quering Images
 
+To query images, include a `search` query parameter and include all the search terms you would like to get images for.
+
 ```
-https://api.unsplash.com/search/photos/api/v1/image?search=denver co winter
+https://api.unsplash.com/search/photos/api/v1/image?search=denver winter
 ```
 
 ## Sorting Images
+
+For sorting images, include a `sort` and `dir` query parameter. The `sort` query parameter currently only supports sorting by `updated`, which is a timestamp for when the image was updated in the Unsplash API. For `dir`, the only supported values are `desc` and `asc`. 
 
 ```
 https://api.unsplash.com/search/photos/api/v1/image?search=summer beach&sort=updated&dir=asc
@@ -64,11 +67,13 @@ https://api.unsplash.com/search/photos/api/v1/image?search=summer beach&sort=upd
 
 ## Filtering Images
 
+If you'd like to filter images, add the `filter` query parameter. Currently only `color_code` is supported. The `color_code` should be a hex value. Don't forget to encode the initial pound sign! 
+
 ```
 https://api.unsplash.com/search/photos/api/v1/image?search=summer beach&filter=%23dabed8
 ```
 
-## Sample of Response
+## Sample Response
 
 ```
 {
@@ -104,6 +109,8 @@ https://api.unsplash.com/search/photos/api/v1/image?search=summer beach&filter=%
 }
 ```
 
+## Future iterations
 
+In the future, this API can be extended to support more sort and filter values however in this initial draft I chose to keep it simple. 
 
 
