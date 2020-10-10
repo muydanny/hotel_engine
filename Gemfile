@@ -9,7 +9,6 @@ gem 'rails', '~> 6.0.3', '>= 6.0.3.3'
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
-gem 'rswag'
 gem 'faraday'
 gem 'figaro'
 gem 'fast_jsonapi', '~> 1.1', '>= 1.1.1'
