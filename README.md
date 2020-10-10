@@ -4,15 +4,15 @@ The purpose of this assignment was to create a client that requests and consumes
 
 Ruby Version
 
-'''
+```
 2.5.3
-'''
+```
 
 Rails Version
 
-'''
+```
 6.0.3.3
-'''
+```
 
 ## Installing / Getting started
 
