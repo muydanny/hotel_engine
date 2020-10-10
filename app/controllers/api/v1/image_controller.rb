@@ -6,19 +6,28 @@ class Api::V1::ImageController < ApplicationController
       search = Search.create(query_params: query_params)
       UnsplashService.new.get_images(search)
     end
+    
+    results = search.results
+    
+    if params[:sort] && params[:sort] == "updated"
+      results = results.order("#{params[:sort]} #{params[:dir] || 'desc'}")
+    end
+    
+    if params[:filter]
+      results = results.where(color_code: params[:filter])
+    end
 
-    if search.results.length != 0
-      render json: UnsplashSerializer.new(search.results).serialized_json, code: 200
+    if results.empty?
+      render json: { info: "No Results" }.as_json, status: 200
     else
-      payload = { error: "No Content"}
-      render :json => payload, :status => 204
+      render json: UnsplashSerializer.new(results).serialized_json, code: 200
     end
   end
 
   private
   
   def search_params
-    params.permit(:search)
+    params.permit(:search, :sort, :dir, :filter)
   end
 
   def query_params
